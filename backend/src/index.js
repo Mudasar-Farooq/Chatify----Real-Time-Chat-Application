@@ -6,9 +6,9 @@ import cookieParser from "cookie-parser"
 import { connectDB } from "./lib/db.js";
 import cors from "cors"
 import bodyParser from "body-parser";
+import {io,app,server} from "./lib/socket.js"
 
 
-const app = express();
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
@@ -31,6 +31,6 @@ app.get("/", function (req, res) {
   res.send("Hello World!");
 });
 
-app.listen(port, function () {
+server.listen(port, function () {
   console.log(`Example app listening on port ${port}!`);
 });

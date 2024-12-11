@@ -1,8 +1,47 @@
-# React + Vite
+<!-- +---------------------------------------------------+
+|                      React App                    |
++---------------------------------------------------+
+        |
+        v
++----------------+       +--------------------+
+| useEffect Hook |       | useAuthStore Hooks |
+|  (Checkauth)   |       |  - authUser        |
+|                |       |  - Checkauth       |
++----------------+       |  - isCheckingauth  |
+                         +--------------------+
+        |
+        v
++----------------------+           +------------------------------------------+
+| Authentication Check |----(if)--> [ Loader (while checking auth) ]          |
+| - isCheckingauth     |           +------------------------------------------+
+| - authUser           |----(else)--> Routes & Pages Rendering
++----------------------+
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+        Rendering Components Based on Routes:
+        -----------------------------------------------------------
+        +------------------+--------------------------------------+
+        | Route Path       | Rendered Component                  |
+        +------------------+--------------------------------------+
+        | "/"              | HomePage (if authUser)              |
+        |                  | Navigate to /login (if not authUser)|
+        +------------------+--------------------------------------+
+        | "/signup"        | SignupPage (if not authUser)        |
+        |                  | Navigate to / (if authUser)         |
+        +------------------+--------------------------------------+
+        | "/login"         | LoginPage (if not authUser)         |
+        |                  | Navigate to / (if authUser)         |
+        +------------------+--------------------------------------+
+        | "/settings"      | SettingsPage (accessible always)    |
+        +------------------+--------------------------------------+
+        | "/profile"       | ProfilePage (if authUser)           |
+        |                  | Navigate to /login (if not authUser)|
+        +------------------+--------------------------------------+
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
++----------------------------+----------------------------------------------+
+| Navbar                     | Appears on all pages                        |
++----------------------------+----------------------------------------------+
+| Toaster                    | Handles notifications and alerts            |
++----------------------------+----------------------------------------------+
+| Theme Management           | Dynamic background inversion based on theme |
+| (useThemestore Hook)       |                                              |
++----------------------------+----------------------------------------------+ -->

@@ -11,9 +11,10 @@ import { Routes , Route, Navigate } from 'react-router-dom'
 import { Loader } from 'lucide-react'
 import { Toaster } from 'react-hot-toast'
 const App = () => {
-  const {authUser,Checkauth, isCheckingauth} = useAuthStore();
+  const {authUser,Checkauth, isCheckingauth,onlineUsers} = useAuthStore();
   const {theme , settheme} = useThemestore();
 
+  console.log("Hyy",onlineUsers)
   useEffect(() => {
     Checkauth();
   }, [Checkauth])

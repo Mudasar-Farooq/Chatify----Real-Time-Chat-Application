@@ -5,13 +5,14 @@ import Chatinput from './Chatinput';
 import useAuthStore from '../store/useAuthstore';
 
 const Chatcontainer = () => {
-  const { Messages, getMessages, isloadingMessages, selectedUser } = useChatstore();
+  const { Messages, getMessages, isloadingMessages, selectedUser,subscribetoMessages } = useChatstore();
   const { authUser } = useAuthStore();
   const chatContainerRef = useRef(null);
 
   useEffect(() => {
     getMessages(selectedUser._id);
-  }, [selectedUser._id, getMessages]);
+    subscribetoMessages();
+  }, [selectedUser._id, getMessages, subscribetoMessages]);
 
   // whenever new message is rendered scroll to down
   useEffect(()=>{

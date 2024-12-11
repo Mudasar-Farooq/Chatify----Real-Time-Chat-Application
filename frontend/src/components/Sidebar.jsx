@@ -1,10 +1,12 @@
 import React, {useEffect} from 'react'
 import useChatstore from '../store/useChatstore'
 import { Users } from 'lucide-react'
+import useAuthStore from '../store/useAuthstore';
 
 const Sidebar = () => {
   const {users, getUsers} = useChatstore();
   const {selectedUser, setselectedUser , isloadingUsers} = useChatstore();
+  const {onlineUsers}= useAuthStore()
 
   // on coming reload, fetch the users
   useEffect(() => {
@@ -36,13 +38,19 @@ const Sidebar = () => {
                 alt={user.name}
                 className="size-10 object-cover rounded-full"
               />
+              {onlineUsers.includes(user._id) &&
+                <span
+                  className='absolute bottom-0 right-0 size-3 rounded-full bg-green-500'
+                />
+              }
+
             </div>
 
               {/* User info - only visible on larger screens */}
               <div className="hidden lg:block text-left min-w-0">
               <div className="font-medium truncate">{user.fulName}</div>
-              <div className="text-sm text-zinc-400">Ofline</div>
-            </div>
+              <div className={`text-sm pointer-events-none  ${onlineUsers.includes(user._id)? "text-red-600": "text-zinc-400"}`}>{onlineUsers.includes(user._id)? "Online": "Offline"}</div>
+              </div>
 
         </button>
 
